@@ -1,5 +1,5 @@
 import load_video_URLs
-import download_videos
+import download_videos_serial
 
 def main():
 
@@ -7,7 +7,7 @@ def main():
     urls = load_video_URLs.load_urls('video_urls.txt')
 
     #Download videos into file
-    download_videos.download_video_urls(urls)
+    download_videos_serial.download_video_urls_serial(urls)
 
 
 if __name__ == "__main__":
