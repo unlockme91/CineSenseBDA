@@ -8,7 +8,7 @@ def main():
     urls = load_video_URLs.load_urls('video_urls.txt')
 
     # Download videos into folder serieally
-    # download_videos_serial.download_video_urls_serial(urls)
+    download_videos_serial.download_video_urls_serial(urls)
 
     
     ## Download videos into folder parallely
