@@ -145,7 +145,7 @@ Download completed: Me at the zoo
 import moviepy.editor as mp
 
 video = mp.VideoFileClip("Me at the zoo.mp4")
-  video.audio.write_audiofile("Me at the zoo.wav")
+   
 ```
 
 > [!NOTE]

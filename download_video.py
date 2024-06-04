@@ -20,6 +20,7 @@ def download_videos_from_url(url):
             mutex.acquire()
             with open('download_log.txt', 'a') as fl:
                 fl.write(log_data)
+            return yt.title
         finally:
             mutex.release()
             video_download__semaphore.release() 
