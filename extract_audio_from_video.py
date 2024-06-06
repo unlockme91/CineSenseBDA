@@ -8,7 +8,8 @@ def extract_audio_from_video(filename):
     file_mp4 = filename + ".mp4"
     try:
         filepath_video = os.path.join('video_output',file_mp4 )
-        folder_audio = Path("videos_processing_output/abc").mkdir(parents=True, exist_ok=True)
+        folder_audio = Path(f"videos_processing_output/{folder_name}")
+        folder_audio.mkdir(parents=True, exist_ok=True)
         filepath_audio = f"{folder_audio}/extracted_audio.wav"
         video = mp.VideoFileClip(filepath_video)
         video.audio.write_audiofile(filepath_audio)
