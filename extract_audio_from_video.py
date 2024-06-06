@@ -14,5 +14,7 @@ def extract_audio_from_video(filename):
         video = mp.VideoFileClip(filepath_video)
         video.audio.write_audiofile(filepath_audio)
 
+    except FileNotFoundError as e:
+        print(f"{filename}.mp4 File not found: {e}")
     except Exception as e:
-        print(e)
+        print(f"Unexpected Error Found: {e}")
