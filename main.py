@@ -4,6 +4,7 @@ import download_videos_serial
 from  download_videos_parallel import download_video_urls_multiplethreads
 from audio_extraction_serial import audio_extraction_from_video_serial
 from text_extraction_parallel import text_extraction_multipleprocesses_pool
+from sentiment_extraction_parallel import sentiment_extraction_multipleprocesses_pool
 import os
 
 def main():
@@ -33,6 +34,9 @@ def main():
 
     # Extracts the text file `wav` from a audio clip `wav` by using multiple processes
     text_extraction_multipleprocesses_pool(filenames)
+
+    # Extracts the text file `wav` from a audio clip `wav` by using multiple processes
+    sentiment_extraction_multipleprocesses_pool(filenames)
 
 
 if __name__ == "__main__":
