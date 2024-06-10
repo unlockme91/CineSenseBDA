@@ -10,3 +10,4 @@ def extract_text_from_audio(video_title):
     with open(file_path, 'w') as file:
         file.write(text)
     print(f'Text has been written to {file_path}')
+    return text

@@ -5,7 +5,8 @@ import multiprocessing
 def text_extraction_multipleprocesses_pool(filenames):
     start=time.perf_counter()
     with multiprocessing.Pool() as pool:
-        pool.map(extract_text_from_audio,filenames)
+        text_list = pool.map(extract_text_from_audio,filenames)
     end=time.perf_counter()
     print(f'Parallel text extraction(process poolmap): {end-start} second(s)')   
+    return text_list
 
