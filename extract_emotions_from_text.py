@@ -4,9 +4,10 @@ nlp = spacy.load('en_core_web_sm')
 nltk.download('punkt')
 
 def extract_emotions_from_text(filename_text):
-    file_path_emotion = f'videos_processing_output/{filename_text[0]}/extracted_emotions.txt'
-    doc = nlp(filename_text[1])
+    folder_title, text = filename_text[0], filename_text[1]
+    file_path_emotion = f'videos_processing_output/{folder_title}/extracted_emotions.txt'
+    doc = nlp(text)
     full_text = ' '.join([sent.text for sent in doc.sents])
-    emotion = NRCLex(filename_text[1])
-    print("Detected Emotions and Frequencies:")
-    print(emotion.affect_frequencies)
+    emotion = NRCLex(text)
+    with open(file_path_emotion,'w') as fl:
+        fl.write("Detected Emotions and Frequencies: \n" + str(emotion.affect_frequencies))
