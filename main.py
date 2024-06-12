@@ -1,16 +1,15 @@
-import audio_extraction_parallel
-import load_video_URLs
-import download_videos_serial
-from  download_videos_parallel import download_video_urls_multiplethreads
-from audio_extraction_serial import audio_extraction_from_video_serial
-from text_extraction_parallel import text_extraction_multipleprocesses_pool
-from sentiment_extraction_parallel import sentiment_extraction_multipleprocesses_pool
-from en_es_translation_parallel import es_subtitles_extraction_multipleprocesses_pool
-from emotion_extraction_parallel import emotion_extraction_multipleprocesses_pool
-
-
-
 import os
+import parallel_audio_extraction
+import load_video_URLs
+import serial_download_videos
+from  parallel_download_videos import download_video_urls_multiplethreads
+from serial_audio_extraction import audio_extraction_from_video_serial
+from parallel_text_extraction import text_extraction_multipleprocesses_pool
+from parallel_sentiment_extraction import sentiment_extraction_multipleprocesses_pool
+from parallel_en_es_translation import es_subtitles_extraction_multipleprocesses_pool
+from parallel_emotion_extraction import emotion_extraction_multipleprocesses_pool, emotion_extraction_multiplethreads
+
+
 
 def main():
 
@@ -21,7 +20,7 @@ def main():
     download_videos_serial.download_video_urls_serial(urls)
 
     
-    # Download videos into folder parallely
+    # Download videos into folder parallely using multithreads
     download_video_urls_multiplethreads(urls)
 
     filenames=  []
@@ -50,6 +49,9 @@ def main():
 
     # Extracts the spanish subtitles from the extracted english text using multiple processes
     emotion_extraction_multipleprocesses_pool(filenames,text_list)
+
+    # Extracts the spanish subtitles from the extracted english text using multiple processes
+    emotion_extraction_multiplethreads(filenames,text_list)
 
 
 
