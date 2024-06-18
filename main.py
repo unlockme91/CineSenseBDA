@@ -13,39 +13,39 @@ from parallel_emotion_extraction import emotion_extraction_multipleprocesses_poo
 
 def main():
 
-    # Loading the videos from the text file
-    urls = load_video_URLs.load_urls('video_urls.txt')
+    # # Loading the videos from the text file
+    # urls = load_video_URLs.load_urls('video_urls.txt')
 
-    # Download videos into folder serieally
-    download_videos_serial.download_video_urls_serial(urls)
+    # # Download videos into folder serieally
+    # serial_download_videos.download_video_urls_serial(urls)
 
     
-    # Download videos into folder parallely using multithreads
-    download_video_urls_multiplethreads(urls)
+    # # Download videos into folder parallely using multithreads
+    # download_video_urls_multiplethreads(urls)
 
     filenames=  []
     for file in os.listdir('video_output'):
         filenames.append(os.path.splitext(file)[0])
 
-    # Extracts the audio file `wav` from a video clip `mp4` sequentially
-    audio_extraction_from_video_serial(filenames)
+    # # Extracts the audio file `wav` from a video clip `mp4` sequentially
+    # audio_extraction_from_video_serial(filenames)
 
-    # Extracts the audio file `wav` from a video clip `mp4` by using multiple processes
-    audio_extraction_parallel.audio_extraction_multipleprocesses_pool(filenames)
+    # # Extracts the audio file `wav` from a video clip `mp4` by using multiple processes
+    # parallel_audio_extraction.audio_extraction_multipleprocesses_pool(filenames)
 
-    # Extracts the audio file `wav` from a video clip `mp4` by using multiple threads
-    audio_extraction_parallel.audio_extraction_multiplethreads(filenames)
+    # # Extracts the audio file `wav` from a video clip `mp4` by using multiple threads
+    # parallel_audio_extraction.audio_extraction_multiplethreads(filenames)
 
     # Extracts the text file `txt` from a audio clip `wav` by using multiple processes
     text_list = text_extraction_multipleprocesses_pool(filenames)
 
 
-    # Extracts the sentiments from the extracted text by using multiple processes
-    sentiment_extraction_multipleprocesses_pool(filenames,text_list)
+    # # Extracts the sentiments from the extracted text by using multiple processes
+    # sentiment_extraction_multipleprocesses_pool(filenames,text_list)
 
 
-    # Extracts the spanish subtitles from the extracted english text using multiple processes
-    es_subtitles_extraction_multipleprocesses_pool(filenames,text_list)
+    # # Extracts the spanish subtitles from the extracted english text using multiple processes
+    # es_subtitles_extraction_multipleprocesses_pool(filenames,text_list)
 
     # Extracts the spanish subtitles from the extracted english text using multiple processes
     emotion_extraction_multipleprocesses_pool(filenames,text_list)

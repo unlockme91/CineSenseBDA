@@ -2,7 +2,8 @@ import moviepy.editor as mp
 import os
 from pathlib import Path
 
-
+## This function is to extract audio from video
+##Param : {filename} is the video title
 def extract_audio_from_video(filename):
     folder_name = filename
     file_mp4 = filename + ".mp4"

@@ -6,6 +6,9 @@ from datetime import datetime
 video_download__semaphore = threading.Semaphore(5)
 mutex = threading.Lock()
 
+
+## This function is to download the best available stream
+## {url} is the video urls
 def download_videos_from_url(url):
     try:
         yt = YouTube(url)
@@ -21,6 +24,7 @@ def download_videos_from_url(url):
             with open('download_log.txt', 'a') as fl:
                 fl.write(log_data)
             return yt.title
+        ## both the mutex and semaphore will be released in finally in case if there is an exception
         finally:
             mutex.release()
             video_download__semaphore.release() 

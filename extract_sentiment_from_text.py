@@ -2,7 +2,6 @@ from textblob import TextBlob
 
 def extract_sentiment_from_text(filename_text):
     folder_title, text = filename_text[0], filename_text[1]
-    file_path_text = f'videos_processing_output/{folder_title}/extracted_text.txt'
     file_path_sentiment = f'videos_processing_output/{folder_title}/extracted_sentiments.txt'
     blob = TextBlob(text)
     print(blob.sentiment)
