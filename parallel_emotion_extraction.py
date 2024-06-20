@@ -3,7 +3,7 @@ import time
 import concurrent.futures
 
 
-## This function is to run audio extraction task in multiple threads in parallel
+## This function is to run emotion extraction task in multiple threads in parallel
 ##Param : {filenames} is the video titles and {text_list} is list of all extracted text
 def emotion_extraction_multiplethreads(filenames,text_list):
     start=time.perf_counter()
