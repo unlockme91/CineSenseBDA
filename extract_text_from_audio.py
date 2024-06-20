@@ -1,5 +1,8 @@
 import speech_recognition as sr
 
+## This function is to extract text from audio
+##Param : {video_title} is the title of the video and folder name here
+## This function will return extracted text of all videos
 
 def extract_text_from_audio(video_title):
     recognizer = sr.Recognizer()

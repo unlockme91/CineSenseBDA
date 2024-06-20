@@ -1,19 +1,13 @@
 from extract_emotions_from_text import extract_emotions_from_text
 import time
-import multiprocessing
 import concurrent.futures
 
-def emotion_extraction_multipleprocesses_pool(filenames,text_list):
-    start=time.perf_counter()
-    filename_text= list(zip(filenames, text_list))
-    with multiprocessing.Pool() as pool:
-        pool.map(extract_emotions_from_text,filename_text)
-    end=time.perf_counter()
-    print(f'Parallel emotion extraction(process poolmap): {end-start} second(s)') 
 
+## This function is to run audio extraction task in multiple threads in parallel
+##Param : {filenames} is the video titles and {text_list} is list of all extracted text
 def emotion_extraction_multiplethreads(filenames,text_list):
     start=time.perf_counter()
-    filename_text= list(zip(filenames, text_list))
+    filename_text= list(zip(filenames, text_list)) #title of video and its corresponding text has been zipped into list of tuples
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(extract_emotions_from_text,filename_text)
     end=time.perf_counter()
