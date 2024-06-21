@@ -43,19 +43,19 @@ def main():
     text_list = text_extraction_multiplethreads_pool(filenames)
 
     # title of video and its corresponding text has been zipped into list of tuples
-    filename_text = list(zip(filenames, text_list)) 
+    filenames_text = list(zip(filenames, text_list)) 
 
 
     # Extracts the sentiments from the extracted text by using multiple threads
-    sentiment_extraction_multiplethreads_pool(filename_text)
+    sentiment_extraction_multiplethreads_pool(filenames_text)
 
 
     # Extracts the spanish subtitles from the extracted english text using multiple threads
-    es_subtitles_extraction_multiplethreads_pool(filename_text)
+    es_subtitles_extraction_multiplethreads_pool(filenames_text)
 
 
     # Extracts the emotions from the extracted english text using multiple threads
-    emotion_extraction_multiplethreads(filename_text)
+    emotion_extraction_multiplethreads(filenames_text)
 
 
 if __name__ == "__main__":
