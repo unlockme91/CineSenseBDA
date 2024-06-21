@@ -8,60 +8,54 @@ from parallel_text_extraction import text_extraction_multipleprocesses_pool,text
 from parallel_sentiment_extraction import sentiment_extraction_multiplethreads_pool
 from parallel_en_es_translation import es_subtitles_extraction_multiplethreads_pool
 from parallel_emotion_extraction import  emotion_extraction_multiplethreads
-from extract_spanish_subtitles import extract_spanish_subtitles
 
 
 
 def main():
-    try:
-        # Loading the videos from the text file
-        urls = load_video_URLs.load_urls('video_urls.txt')
 
-        # Download videos into folder serieally
-        serial_download_videos.download_video_urls_serial(urls)
+    # Loading the videos from the text file
+    urls = load_video_URLs.load_urls('video_urls.txt')
 
-        
-        # Download videos into folder parallely using multithreads
-        download_video_urls_multiplethreads(urls)
+    # Download videos into folder serieally
+    serial_download_videos.download_video_urls_serial(urls)
 
-        filenames=  []
-        for file in os.listdir('video_output'):
-            filenames.append(os.path.splitext(file)[0])
+    
+    # Download videos into folder parallely using multithreads
+    download_video_urls_multiplethreads(urls)
 
-        # Extracts the audio file `wav` from a video clip `mp4` sequentially
-        audio_extraction_from_video_serial(filenames)
+    filenames=  []
+    for file in os.listdir('video_output'):
+        filenames.append(os.path.splitext(file)[0])
 
-        # Extracts the audio file `wav` from a video clip `mp4` by using multiple processes
-        parallel_audio_extraction.audio_extraction_multipleprocesses_pool(filenames)
+    # Extracts the audio file `wav` from a video clip `mp4` sequentially
+    audio_extraction_from_video_serial(filenames)
 
-        # Extracts the audio file `wav` from a video clip `mp4` by using multiple threads
-        parallel_audio_extraction.audio_extraction_multiplethreads(filenames)
+    # Extracts the audio file `wav` from a video clip `mp4` by using multiple processes
+    parallel_audio_extraction.audio_extraction_multipleprocesses_pool(filenames)
 
-        # Extracts the text file `txt` from a audio clip `wav` by using multiple processes
-        text_extraction_multipleprocesses_pool(filenames)
+    # Extracts the audio file `wav` from a video clip `mp4` by using multiple threads
+    parallel_audio_extraction.audio_extraction_multiplethreads(filenames)
 
-        # Extracts the text file `txt` from a audio clip `wav` by using multiple threads
-        text_list = text_extraction_multiplethreads_pool(filenames)
+    # Extracts the text file `txt` from a audio clip `wav` by using multiple processes
+    text_extraction_multipleprocesses_pool(filenames)
 
-        # title of video and its corresponding text has been zipped into list of tuples
-        filename_text= list(zip(filenames, text_list)) 
+    # Extracts the text file `txt` from a audio clip `wav` by using multiple threads
+    text_list = text_extraction_multiplethreads_pool(filenames)
 
-
-        # Extracts the sentiments from the extracted text by using multiple threads
-        sentiment_extraction_multiplethreads_pool(filename_text)
+    # title of video and its corresponding text has been zipped into list of tuples
+    filename_text = list(zip(filenames, text_list)) 
 
 
+    # Extracts the sentiments from the extracted text by using multiple threads
+    sentiment_extraction_multiplethreads_pool(filename_text)
 
-        # Extracts the spanish subtitles from the extracted english text using multiple threads
-        es_subtitles_extraction_multiplethreads_pool(filename_text)
+
+    # Extracts the spanish subtitles from the extracted english text using multiple threads
+    es_subtitles_extraction_multiplethreads_pool(filename_text)
 
 
-        # Extracts the emotions from the extracted english text using multiple threads
-        emotion_extraction_multiplethreads(filename_text)
-
-    except Exception as e:
-        print(f"Unexpected Error Found: {e}") 
-
+    # Extracts the emotions from the extracted english text using multiple threads
+    emotion_extraction_multiplethreads(filename_text)
 
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@ def text_extraction_multipleprocesses_pool(filenames):
 
 
 ## This function is to run text extraction task in multiple threads in parallel
-##Param : {filenames} is the list containing all the video titles/text file names
+##Param : {filenames} is the list containing all the video titles/textfile names
 def text_extraction_multiplethreads_pool(filenames):
     start=time.perf_counter()
     with concurrent.futures.ThreadPoolExecutor() as executor:

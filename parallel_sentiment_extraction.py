@@ -4,7 +4,7 @@ import concurrent.futures
 
 
 ## This function is to run spanish transaltion task sentiment extraction task in multiple threads in parallel
-##Param : {filename_text} is the tuple containing the video title and extracted text from the corresponding video
+##Param : {filename_text} is the list of tuples, each tuple item containing the video title and its corresponding extracted text
 def sentiment_extraction_multiplethreads_pool(filename_text):
     start=time.perf_counter()
     with concurrent.futures.ThreadPoolExecutor() as executor:

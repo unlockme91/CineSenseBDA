@@ -1,7 +1,7 @@
 from googletrans import Translator
 
 ## This function is to transalate extracted english text into spanish
-##Param : {filename_text} is the tuple containing the video title and extracted text from the corresponding video
+##Param : {filename_text} is the tuple containing the title of video and its corresponding extracted text
 def extract_spanish_subtitles(filename_text):
     folder_title, text = filename_text[0], filename_text[1]
     file_path_subtitles = f'videos_processing_output/{folder_title}/extracted_spanish_subtitles.txt'

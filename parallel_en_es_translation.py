@@ -4,7 +4,7 @@ import concurrent.futures
 
 
 ## This function is to run spanish transaltion task in multiple threads in parallel
-##Param : {filenames} is the video titles/video folder and {text_list} is list of all extracted text
+##Param : {filename_text} is the list of tuples, each tuple item containing the video title and its corresponding extracted text
 def es_subtitles_extraction_multiplethreads_pool(filename_text):
     start=time.perf_counter()
     try:

@@ -4,7 +4,7 @@ import concurrent.futures
 
 
 ## This function is to run emotion extraction task in multiple threads in parallel
-##Param : {filenames} is the video titles and {text_list} is list of all extracted text
+##Param : {filename_text} is the list of tuples, each tuple item containing the video title and its corresponding extracted text
 def emotion_extraction_multiplethreads(filename_text):
     start=time.perf_counter()
     with concurrent.futures.ThreadPoolExecutor() as executor:
